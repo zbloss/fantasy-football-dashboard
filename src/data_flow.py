@@ -1,6 +1,5 @@
 from metaflow import FlowSpec, Parameter, step
 
-
 class DataFlow(FlowSpec):
 
     output_directory = Parameter(
