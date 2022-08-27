@@ -1,0 +1,3 @@
+espn_api==0.21.0
+pandas==1.3.4
+metaflow==2.7.6
