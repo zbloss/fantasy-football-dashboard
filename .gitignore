@@ -1,7 +1,8 @@
 .metaflow/
 data/*.json
-webapp/src/data/*.json
+webapp/assets/data/*.json
 webapp/node_modules/*
+webapp/.next/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
