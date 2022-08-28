@@ -5,7 +5,7 @@ class DataFlow(FlowSpec):
     output_directory = Parameter(
         "output_directory",
         type=str,
-        default="data/",
+        default="webapp/src/data",
         help="Directory to output all of the files to.",
         required=False,
     )
