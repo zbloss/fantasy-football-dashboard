@@ -2,21 +2,26 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
+import matchupTable from '../components/matchupTable';
+import getAllMatchupsData from '../lib/getMatchupData';
 
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allMatchupsData = getAllMatchupsData();
+  console.log("allMatchupsData: ", allMatchupsData)
   return {
     props: {
-      allPostsData,
+      allMatchupsData    
     },
   };
 }
 
 
-export default function Home({ allPostsData }) {
-  return (
+export default function Home({ allMatchupsData }) {
+
+  const matchups = matchupTable();
+
+    return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
@@ -29,21 +34,11 @@ export default function Home({ allPostsData }) {
         </p>
       </section>
 
+
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
+        <h2 className={utilStyles.headingLg}>Matchups</h2>
+        {matchups}
+  
       </section>
 
     </Layout>

@@ -5,7 +5,7 @@ class DataFlow(FlowSpec):
     output_directory = Parameter(
         "output_directory",
         type=str,
-        default="webapp/src/data",
+        default="webapp/data",
         help="Directory to output all of the files to.",
         required=False,
     )
@@ -42,11 +42,17 @@ class DataFlow(FlowSpec):
 
         data = {}
         away_team = get_team_lineup(self.input.away_lineup)
+        data['away_team_name'] = self.input.away_team.team_name
+        data['away_team_logo'] = self.input.away_team.logo_url
+        data['away_team_standing'] = self.input.away_team.standing
         data["away_team"] = away_team
         data["away_score"] = self.input.away_score
         data["away_projected"] = self.input.away_projected
 
         home_team = get_team_lineup(self.input.home_lineup)
+        data['home_team_name'] = self.input.home_team.team_name
+        data['home_team_logo'] = self.input.home_team.logo_url
+        data['home_team_standing'] = self.input.home_team.standing
         data["home_team"] = home_team
         data["home_score"] = self.input.home_score
         data["home_projected"] = self.input.home_projected
