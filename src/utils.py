@@ -19,9 +19,13 @@ def get_team_lineup(lineup_list: list) -> list:
     team = []
     for player in lineup_list:
         data = {}
-        data["injuryStatus"] = (
-            "-" if player.injuryStatus == "ACTIVE" else player.injuryStatus
-        )
+        if player.injuryStatus == "ACTIVE" or player.injuryStatus == "NORMAL" or player.injuryStatus == []:
+            status = "-"
+        elif player.injuryStatus == "QUESTIONABLE":
+            status = "Q"
+        else:
+            status = "O"
+        data["injuryStatus"] = status
         data["name"] = player.name
         data["playerId"] = player.playerId
         data["points"] = player.points

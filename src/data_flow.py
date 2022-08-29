@@ -99,11 +99,13 @@ class DataFlow(FlowSpec):
         free_agent["name"] = self.input.name
         free_agent["points"] = self.input.points
         free_agent["projectedPoints"] = self.input.projected_points
-        free_agent["injuryStatus"] = (
-            "-"
-            if self.input.injuryStatus == "ACTIVE" or self.input.injuryStatus == []
-            else self.input.injuryStatus
-        )
+        if self.input.injuryStatus == "ACTIVE" or self.input.injuryStatus == "NORMAL" or self.input.injuryStatus == []:
+            status = "-"
+        elif self.input.injuryStatus == "QUESTIONABLE":
+            status = "Q"
+        else:
+            status = "O"
+        free_agent["injuryStatus"] = status
         free_agent["position"] = self.input.position
         free_agent["team"] = self.input.proTeam
         free_agent["opponent"] = self.input.pro_opponent
