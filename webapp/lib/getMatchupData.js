@@ -19,7 +19,6 @@ export default function getAllMatchupsData() {
 export function getMatchupData (id) {
 
     const allMatchupData = getAllMatchupsData();
-    console.log("allMatchupData: ", allMatchupData);
     const matchup = allMatchupData[id];
     return {
         id,

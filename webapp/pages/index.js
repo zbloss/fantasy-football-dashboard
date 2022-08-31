@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import matchupTable from '../components/matchupTable';
 import getAllMatchupsData from '../lib/getMatchupData';
@@ -8,7 +7,6 @@ import getAllMatchupsData from '../lib/getMatchupData';
 
 export async function getStaticProps() {
   const allMatchupsData = getAllMatchupsData();
-  console.log("allMatchupsData: ", allMatchupsData)
   return {
     props: {
       allMatchupsData    
@@ -19,28 +17,30 @@ export async function getStaticProps() {
 
 export default function Home({ allMatchupsData }) {
 
-  const matchups = matchupTable();
-
     return (
-    <Layout home>
+    <div className='container'>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Fantasy Football Dashboard</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
 
+      <div className='row'>
+        <div className='col-sm-12'>
+          <h1>Fantasy Football Dashboard</h1>
+          <p>Welcome to my hobby project where I display fantasy scores for my public ESPN league.</p>
+        </div>
+      </div>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Matchups</h2>
-        {matchups}
-  
-      </section>
+      <div className='row'>
+        <div className='col-sm-12'>
+          <h2>This Weeks Matchups!</h2>
+        </div>
+      </div>
 
-    </Layout>
+      <div className='row'>
+        <div className='col-sm-12'>
+          {matchupTable()}
+        </div>
+      </div>
+    </div>
   )
 }
