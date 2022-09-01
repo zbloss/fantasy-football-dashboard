@@ -35,6 +35,18 @@ export default function Home({ allMatchupsData }) {
 
       <div className='row'>
         <div className='col-sm-12'>
+          {data ? <figure className='text-center'>
+            <h1 className='blue'>League: <small className='text-muted'>{data.settings.name}</small></h1> 
+            <h1>Season: <small className='text-primary'>{data.seasonId}</small></h1>  
+          </figure>
+          : <></>}
+
+        </div>
+      </div>
+
+
+      <div className='row'>
+        <div className='col-sm-12'>
           <h1>Fantasy Football Dashboard</h1>
           <p>Welcome to my hobby project where I display fantasy scores for my public ESPN league.</p>
         </div>
