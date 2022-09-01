@@ -1,18 +1,12 @@
-import useSWR from 'swr';
-import matchups from '../data/matchups.json';
+import matchups from '/data/matchups.json';
 
 
 export default function getAllMatchupsData() {
-    // const fetcher = (url) => fetch(url).then((res) => res.json());
+    
+    // const { matchups, isLoading, isError } = getDataset('matchups.json')
 
-    // const [ data, error ] = useSWR(
-    //     "data/matchups.json",
-    //     fetcher
-    // );
-
-    // if (error) return "An error has occurred.";
-    // if (!data) return "Loading...";
-
+    // if (isLoading) return []
+    // if (isError) return []
     return matchups;
 }
 

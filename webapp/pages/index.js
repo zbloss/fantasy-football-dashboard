@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import utilStyles from '../styles/utils.module.css';
 import matchupTable from '../components/matchupTable';
 import getAllMatchupsData from '../lib/getMatchupData';
+import useSWR from 'swr';
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export async function getStaticProps() {
+
   const allMatchupsData = getAllMatchupsData();
   return {
     props: {
@@ -17,7 +19,15 @@ export async function getStaticProps() {
 
 export default function Home({ allMatchupsData }) {
 
-    return (
+
+  const leagueId = '1150587'
+  const seasonId = '2022'
+  const url = 'https://fantasy.espn.com/apis/v3/games/ffl/seasons'
+
+  const { data, error } = useSWR(`${url}/${seasonId}/segments/0/leagues/${leagueId}`, fetcher)
+  console.log("data: ", data)
+
+  return (
     <div className='container'>
       <Head>
         <title>Fantasy Football Dashboard</title>
