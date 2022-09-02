@@ -19,7 +19,6 @@ export async function getStaticProps() {
 
 export default function Home({ allMatchupsData }) {
 
-
   const leagueId = '1150587'
   const seasonId = '2022'
   const url = 'https://fantasy.espn.com/apis/v3/games/ffl/seasons'
@@ -36,11 +35,32 @@ export default function Home({ allMatchupsData }) {
       <div className='row'>
         <div className='col-sm-12'>
           {data ? <figure className='text-center'>
-            <h1 className='blue'>League: <small className='text-muted'>{data.settings.name}</small></h1> 
+            <h1>League: <small className='text-muted'>{data.settings.name}</small></h1> 
             <h1>Season: <small className='text-primary'>{data.seasonId}</small></h1>  
           </figure>
           : <></>}
+        </div>
+      </div>
 
+      <div className='row'>
+        <div className='col-sm-12'>
+          <h1 className='text-primary'>League Members</h1>
+          {data ? 
+            <table className='table table-striped'>
+              <thead>
+                <tr><th>Members</th></tr>
+              </thead>
+              <tbody>
+                {data.members.map((member, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{member.displayName}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          : <></>}
         </div>
       </div>
 
