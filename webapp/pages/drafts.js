@@ -10,9 +10,9 @@ export default function Drafts() {
   const seasonId = '2022'
   const url = 'https://fantasy.espn.com/apis/v3/games/ffl/seasons'
 
-  const finalUrl = `${url}/${seasonId}/segments/0/leagues/${leagueId}`
+  const finalURL = `${url}/${seasonId}/segments/0/leagues/${leagueId}`
 
-  const { data: matchupData, error: matchupError } = useSWR(`${finalUrl}?view=mMatchup`, fetcher)
+  const { data: matchupData, error: matchupError } = useSWR(`${finalURL}?view=mMatchup`, fetcher)
   console.log("matchupData: ", matchupData)  
 
   const scoringPeriodId = matchupData ? matchupData.scoringPeriodId : undefined
@@ -45,7 +45,7 @@ export default function Drafts() {
 
 
   return (
-    <>
+    <div className='container'>
         <div className='row'>
             <div className='col-sm-12'>
                 <h1>Matchups Page</h1>
@@ -69,6 +69,6 @@ export default function Drafts() {
             </table>
           </div>
         </div>
-    </>
+    </div>
   )
 }
